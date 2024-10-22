@@ -1,0 +1,32 @@
+# https://releases.ubuntu.com/24.04.1/ubuntu-24.04.1-live-server-amd64.iso
+iso_download_url="$1"
+build_folder="build"
+iso_download_path="$build_folder/original.iso"
+read_only_iso_contents_folder="$build_folder/original_mount"
+write_custom_iso_contents_folder="$build_folder/custom"
+src_folder="src"
+iso_output_path="$build_folder/output.iso"
+if [ -z "$iso_download_url" ]; then
+    echo "Usage: $0 <iso_download_url>"
+    exit 1
+fi
+# check whether xorisso is installed
+if ! command -v xorisso >/dev/null 2>&1; then
+    echo "xorriso is not installed. Please install it first."
+    exit 1
+fi
+# Download the ISO
+mkdir -p "$read_only_iso_contents_folder" "$write_custom_iso_contents_folder"
+curl -L -o "$iso_download_path" "$iso_download_url"
+hdiutil_attach_output=$(hdiutil attach -nomount "$iso_download_path")
+device=$(echo "$hdiutil_attach_output" | head -n1 | grep '/dev/disk' | awk '{print $1}')
+mount -t cd9660 "$device" "$read_only_iso_contents_folder"
+rsync -av "$read_only_iso_contents_folder/" "$write_custom_iso_contents_folder"
+# Modify the custom folder
+rsync -av "$src_folder" "$write_custom_iso_contents_folder"
+# Build the ISO
+captured_args=$(xorriso -indev "$iso_download_path" -report_el_torito as_mkisofs 2>/dev/null | tr '\n' ' ')
+cmd="xorisso -as mkisofs -o \"$iso_output_path\" $captured_args \"$write_custom_iso_contents_folder\""
+echo "$cmd"
+eval "$cmd"
+hdiutil detach "$device"
