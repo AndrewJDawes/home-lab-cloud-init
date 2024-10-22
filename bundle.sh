@@ -1,4 +1,5 @@
 #!/bin/bash
+# https://askubuntu.com/questions/1390827/how-to-make-ubuntu-autoinstall-iso-with-cloud-init-in-ubuntu-21-10/1391309#1391309
 original_iso="$1"    # /path/to/ubuntu-24.04.1-live-server-amd64.iso
 modified_folder="$2" # /new
 output_iso="$3"      # output.iso
