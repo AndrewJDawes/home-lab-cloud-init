@@ -13,7 +13,7 @@
 4. Download an Ubuntu ISO
 5. Build the ISO from your modified files
     1. https://github.com/AndrewJDawes/home-lab-cloud-init/blob/main/bundle.sh
-    2. Example: `bash bundle.sh "~/Downloads/Ubuntu-21.10-live-server-amd64.iso"`
+    2. Example: `bash build.sh ~/Downloads/ubuntu-24.04.1-live-server-amd64.iso`
     3. Note that you need the original ISO for reference because xorriso uses that to deduce what build args are required
 6. Insert a USB drive to use for booting (will overwrite this)
 7. Identify at what device the USB drive is mounted
@@ -41,6 +41,10 @@
     2. Probably prefixed with "UEFI" which stands for Unified Extensible Firmware (used for booting)
         1. https://en.wikipedia.org/wiki/UEFI
 15. From this point on, it should start autoinstalling
+
+## Web Server command
+
+`docker run -p 80:80 -v $(pwd)/server:/usr/share/nginx/html nginx`
 
 ## Resources
 
