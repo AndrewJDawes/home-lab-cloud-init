@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        // "**/**/*.cfg": "yaml"
+        "**/src/etc/cloud/cloud.cfg.d/*.cfg": "yaml",
+        "**/server/*": "yaml"
+    }
+}
