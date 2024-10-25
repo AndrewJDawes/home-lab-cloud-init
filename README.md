@@ -54,6 +54,7 @@
 
 -   Instead of src/server/meta-data and src/server/user-data, use /etc/cloud/cloud.cfg.d/\*.cfg and specify a NoCloud datasource seedFrom
     -   https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html#source-3-custom-webserver
+-   It did NOT discover the seedFrom or make the network request, so probably want to try the boot option `ds=nocloud-net;s=http://
 -   Serve all 4 of these required files from a webserver
     -   https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html#source-files
     -   You can pass in any secrets
