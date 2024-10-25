@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# log everything
+set -x
 # https://releases.ubuntu.com/24.04.1/ubuntu-24.04.1-live-server-amd64.iso
 # iso_download_url="$1"
 build_folder="build"
@@ -29,4 +31,6 @@ cmd="xorriso -as mkisofs -o \"$iso_output_path\" $captured_args \"$write_custom_
 echo "$cmd"
 eval "$cmd"
 umount "$read_only_iso_contents_folder"
+diskutil unmountDisk "$device"
 hdiutil detach "$device"
+set +x
