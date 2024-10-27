@@ -50,11 +50,23 @@
 
 -   Video: https://www.youtube.com/watch?v=DtXZ6BMaKbA&t=70s
 
+## File System
+
+## Does not automatically boot
+
+-   https://askubuntu.com/a/1487799
+
+### UEFI
+
+-   https://github.com/AndrewJDawes/home-lab-cloud-init/commit/d58ce3d47ef97d2323997277bc98492c8b3965d0
+
+### MBR
+
+-   https://curtin.readthedocs.io/en/latest/topics/storage.html#zfs-root-simple
+-   https://github.com/AndrewJDawes/home-lab-cloud-init/commit/d777cdbb989b0021db44fbf0878777c46eb5e0bd
+
 ## TODO
 
--   Instead of src/server/meta-data and src/server/user-data, use /etc/cloud/cloud.cfg.d/\*.cfg and specify a NoCloud datasource seedFrom
-    -   https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html#source-3-custom-webserver
--   It did NOT discover the seedFrom or make the network request, so probably want to try the boot option `ds=nocloud-net;s=http://
--   Serve all 4 of these required files from a webserver
-    -   https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html#source-files
-    -   You can pass in any secrets
+-   Figure out why Ubuntu won't autoboot
+    -   https://askubuntu.com/questions/1487504/ubuntu-22-04-autoinstall-works-on-uefi-but-not-mbr-in-virtualbox
+    -   https://curtin.readthedocs.io/en/latest/topics/storage.html#zfs-root-simple
