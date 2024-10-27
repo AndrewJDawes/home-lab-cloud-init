@@ -29,7 +29,7 @@
 10. Write the data from the built output ISO to the disk using `dd` to write to the `/dev/rdiskX`
     1. https://www.cybrary.it/blog/macos-terminal-create-bootable-usb-iso-using-dd
     2. https://www.youtube.com/watch?app=desktop&v=B0Et0d-FGR8
-    3. Example: `sudo dd if=build/output.iso of=/dev/rdisk4 bs=5m`
+    3. Example: `sudo dd if=build/output.iso of=/dev/rdisk4 bs=1M`
     4. Notice how we are writing to the raw disk, not the partition
 11. **Eject** the disk (USB drive) (meaning the disk device is no longer available to the system)
     1. `diskutil eject /dev/diskX`
