@@ -74,6 +74,7 @@
 
 ## TODO
 
--   Figure out why Ubuntu won't autoboot
-    -   https://askubuntu.com/questions/1487504/ubuntu-22-04-autoinstall-works-on-uefi-but-not-mbr-in-virtualbox
-    -   https://curtin.readthedocs.io/en/latest/topics/storage.html#zfs-root-simple
+-   Maybe reduce the grub boot time
+    -   This will NOT be the src/boot/grub/grub.cfg file
+    -   It would need to be a different file that is used to generate the grub.cfg file
+        -   https://askubuntu.com/questions/43020/decrease-grub-timeout
