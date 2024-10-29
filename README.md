@@ -55,15 +55,22 @@
 ## Does not automatically boot
 
 -   https://askubuntu.com/a/1487799
+-   https://askubuntu.com/a/1438972
 
 ### UEFI
 
 -   https://github.com/AndrewJDawes/home-lab-cloud-init/commit/d58ce3d47ef97d2323997277bc98492c8b3965d0
+-   Crosscompat: https://askubuntu.com/a/1438972
 
 ### MBR
 
 -   https://curtin.readthedocs.io/en/latest/topics/storage.html#zfs-root-simple
 -   https://github.com/AndrewJDawes/home-lab-cloud-init/commit/d777cdbb989b0021db44fbf0878777c46eb5e0bd
+-   Crosscompat: https://askubuntu.com/a/1438972
+
+## Automatically boots after 20 seconds
+
+-   https://askubuntu.com/a/1285074
 
 ## TODO
 
