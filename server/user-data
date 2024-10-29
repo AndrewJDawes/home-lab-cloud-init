@@ -28,7 +28,7 @@ autoinstall:
       - id: sda2
         type: partition
         number: 2
-        size: 9G
+        size: -1
         device: sda
       - id: sda2_root
         type: format
