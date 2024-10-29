@@ -10,32 +10,64 @@ autoinstall:
     layout:
       name: zfs
     config:
-      - id: sda
-        ptable: msdos
-        wipe: superblock-recursive
-        preserve: false
-        name: ""
+      - id: disk-sda
         type: disk
         match:
           size: largest
+        ptable: gpt
+        preserve: false
+        name: ""
         grub_device: true
-      - id: sda1
+      - id: partition-14
         type: partition
-        number: 1
-        size: 3GB
-        device: sda
+        device: disk-sda
+        size: 4194304
+        wipe: superblock
+        flag: bios_grub
+        number: 14
+        preserve: false
+        grub_device: false
+      - id: partition-15
+        type: partition
+        device: disk-sda
+        size: 111149056
+        wipe: superblock
         flag: boot
-      - id: sda2
+        number: 15
+        preserve: false
+        grub_device: UEFI
+      - id: partition-1
         type: partition
-        number: 2
-        size: 9G
-        device: sda
-      - id: sda2_root
+        device: disk-sda
+        size: -1
+        wipe: superblock
+        number: 1
+        preserve: false
+        grub_device: false
+      - id: format-15
+        type: format
+        fstype: fat32
+        volume: partition-15
+        preserve: false
+      - id: mount-15
+        type: mount
+        path: /boot/efi
+        device: format-15
+      - id: format-1
         type: format
         fstype: zfsroot
-        volume: sda2
         label: "cloudimg-rootfs"
-      - id: sda2_mount
+        volume: partition-1
+        preserve: false
+      - id: mount-1
         type: mount
         path: /
-        device: sda2_root
+        device: format-1
+    early-commands:
+      - |
+        if [ -e "/sys/firmware/efi" ]; then
+          sed -i -e "s/grub_device: UEFI/grub_device: true/" /autoinstall.yaml
+        else
+          sed -i -e "s/grub_device: UEFI/grub_device: false/" /autoinstall.yaml
+        fi
+        true
