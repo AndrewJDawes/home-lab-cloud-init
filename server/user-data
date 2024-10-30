@@ -3,6 +3,7 @@ autoinstall:
   version: 1
   identity:
     hostname: ubuntu-server
+    # passwd = test
     password: $6$exDY1mhS4KUYCE/2$X06VbakcHcJMq6QlxF1xlWT02RHxk7y7P4xRZg9TxV6AozkdfLcOzatD9tXoJapLnFluczgCVaN4WoLE8PLHz.
     username: ubuntu
   storage:
@@ -42,6 +43,10 @@ autoinstall:
   user-data:
     users:
       - default
+      - name: test
+        lock_passwd: false
+        passwd: $6$exDY1mhS4KUYCE/2$X06VbakcHcJMq6QlxF1xlWT02RHxk7y7P4xRZg9TxV6AozkdfLcOzatD9tXoJapLnFluczgCVaN4WoLE8PLHz.
+        sudo: ALL=(ALL) NOPASSWD:ALL
       # - name: andrew
       #   ssh_import_id:
       #     - gh:AndrewJDawes
