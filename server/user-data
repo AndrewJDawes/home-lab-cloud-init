@@ -39,3 +39,14 @@ autoinstall:
         type: mount
         path: /
         device: sda2_root
+  user-data:
+    users:
+      - default
+      # - name: andrew
+      #   ssh_import_id:
+      #     - gh:AndrewJDawes
+      - name: ansible
+        ssh_authorized_keys:
+          - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII7aV+1CmLL+WxoKn6J7QQMj8LUxJ0AAPJeLBRnDS9Y9 andrewdawes@Andrews-MacBook-Pro-2.local
+        homedir: /home/ansible
+        sudo: "ALL=(ALL) NOPASSWD:ALL"
