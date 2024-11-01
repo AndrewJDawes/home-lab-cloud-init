@@ -47,9 +47,9 @@ autoinstall:
         lock_passwd: false
         passwd: $6$exDY1mhS4KUYCE/2$X06VbakcHcJMq6QlxF1xlWT02RHxk7y7P4xRZg9TxV6AozkdfLcOzatD9tXoJapLnFluczgCVaN4WoLE8PLHz.
         sudo: ALL=(ALL) NOPASSWD:ALL
-      # - name: andrew
-      #   ssh_import_id:
-      #     - gh:AndrewJDawes
+      - name: andrew
+        ssh_import_id:
+          - gh:AndrewJDawes
       - name: ansible
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII7aV+1CmLL+WxoKn6J7QQMj8LUxJ0AAPJeLBRnDS9Y9 andrewdawes@Andrews-MacBook-Pro-2.local
