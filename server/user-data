@@ -40,6 +40,9 @@ autoinstall:
         type: mount
         path: /
         device: sda2_root
+  ssh:
+    # https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html#install-server
+    install-server: yes
   user-data:
     users:
       - default
@@ -48,6 +51,7 @@ autoinstall:
         passwd: $6$exDY1mhS4KUYCE/2$X06VbakcHcJMq6QlxF1xlWT02RHxk7y7P4xRZg9TxV6AozkdfLcOzatD9tXoJapLnFluczgCVaN4WoLE8PLHz.
         sudo: ALL=(ALL) NOPASSWD:ALL
       - name: andrew
+        # TODO Now it IS working - after installing SSH??
         ssh_import_id:
           - gh:AndrewJDawes
       - name: ansible
