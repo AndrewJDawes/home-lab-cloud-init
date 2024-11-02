@@ -1,11 +1,12 @@
 #cloud-config
 autoinstall:
   version: 1
-  identity:
-    hostname: ubuntu-server
-    # passwd = test
-    password: $6$exDY1mhS4KUYCE/2$X06VbakcHcJMq6QlxF1xlWT02RHxk7y7P4xRZg9TxV6AozkdfLcOzatD9tXoJapLnFluczgCVaN4WoLE8PLHz.
-    username: ubuntu
+  # https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html#ai-identity
+  # identity:
+  #   hostname: ubuntu-server
+  #   # passwd = test
+  #   password: $6$exDY1mhS4KUYCE/2$X06VbakcHcJMq6QlxF1xlWT02RHxk7y7P4xRZg9TxV6AozkdfLcOzatD9tXoJapLnFluczgCVaN4WoLE8PLHz.
+  #   username: ubuntu
   storage:
     version: 1
     layout:
@@ -43,19 +44,26 @@ autoinstall:
   ssh:
     # https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html#install-server
     install-server: yes
+    allow-pw: false
   user-data:
     users:
-      - default
-      - name: test
-        lock_passwd: false
-        passwd: $6$exDY1mhS4KUYCE/2$X06VbakcHcJMq6QlxF1xlWT02RHxk7y7P4xRZg9TxV6AozkdfLcOzatD9tXoJapLnFluczgCVaN4WoLE8PLHz.
-        sudo: ALL=(ALL) NOPASSWD:ALL
       - name: andrew
-        # TODO Now it IS working - after installing SSH??
+        sudo: "ALL=(ALL) ALL"
+        lock_passwd: false
+        passwd: $6$4MakK-Qe8~BN3Mj$4zWT27jQrZM7yN3IvwYbraAHKhP8gIh9Ee6TLbChjXbW/bedW4yhuNQ4qRt/D63Gdho3M6hubptDZhKKWN/QV0
+        # Now it IS working - after installing SSH?
         ssh_import_id:
           - gh:AndrewJDawes
+        # https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html#user-data
+        groups: adm, cdrom, dip, lxd, plugdev, sudo
+        homedir: /home/andrew
+        shell: /bin/bash
       - name: ansible
+        sudo: "ALL=(ALL) NOPASSWD:ALL"
+        lock_passwd: true
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII7aV+1CmLL+WxoKn6J7QQMj8LUxJ0AAPJeLBRnDS9Y9 andrewdawes@Andrews-MacBook-Pro-2.local
+        # https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html#user-data
+        groups: adm, cdrom, dip, lxd, plugdev, sudo
         homedir: /home/ansible
-        sudo: "ALL=(ALL) NOPASSWD:ALL"
+        shell: /bin/bash
