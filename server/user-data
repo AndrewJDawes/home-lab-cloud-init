@@ -48,7 +48,10 @@ autoinstall:
   user-data:
     users:
       - name: andrew
-        sudo: "ALL=(ALL) ALL"
+        # If you want to allow sudo but require password
+        # sudo: "ALL=(ALL) ALL"
+        # If you want to allow sudo and NOT require password
+        sudo: "ALL=(ALL) NOPASSWD:ALL"
         lock_passwd: false
         passwd: $6$4MakK-Qe8~BN3Mj$4zWT27jQrZM7yN3IvwYbraAHKhP8gIh9Ee6TLbChjXbW/bedW4yhuNQ4qRt/D63Gdho3M6hubptDZhKKWN/QV0
         # Now it IS working - after installing SSH?
@@ -58,12 +61,20 @@ autoinstall:
         groups: adm, cdrom, dip, lxd, plugdev, sudo
         homedir: /home/andrew
         shell: /bin/bash
+      - name: missie
+        sudo: "ALL=(ALL) NOPASSWD:ALL"
+        lock_passwd: false
+        passwd: $6$29!U$9sVFGOl$UKCGmow/xkqjjCg21I8FmB.UUb4XlIsQEDzg76iN/EVkPXUWUAaoHEDtOVL/k0zxsjgXYYLX6HPhF5flg00yM.
+        ssh_import_id:
+          - gh:missiedawes
+        groups: adm, cdrom, dip, lxd, plugdev, sudo
+        homedir: /home/missie
+        shell: /bin/bash
       - name: ansible
         sudo: "ALL=(ALL) NOPASSWD:ALL"
         lock_passwd: true
         ssh_authorized_keys:
           - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII7aV+1CmLL+WxoKn6J7QQMj8LUxJ0AAPJeLBRnDS9Y9 andrewdawes@Andrews-MacBook-Pro-2.local
-        # https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html#user-data
         groups: adm, cdrom, dip, lxd, plugdev, sudo
         homedir: /home/ansible
         shell: /bin/bash
