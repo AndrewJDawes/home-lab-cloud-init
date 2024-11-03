@@ -7,40 +7,40 @@ autoinstall:
   #   # passwd = test
   #   password: $6$exDY1mhS4KUYCE/2$X06VbakcHcJMq6QlxF1xlWT02RHxk7y7P4xRZg9TxV6AozkdfLcOzatD9tXoJapLnFluczgCVaN4WoLE8PLHz.
   #   username: ubuntu
-  storage:
-    version: 1
-    layout:
-      name: zfs
-    config:
-      - id: sda
-        ptable: msdos
-        wipe: superblock-recursive
-        preserve: false
-        name: ""
-        type: disk
-        match:
-          size: largest
-        grub_device: true
-      - id: sda1
-        type: partition
-        number: 1
-        size: 3GB
-        device: sda
-        flag: boot
-      - id: sda2
-        type: partition
-        number: 2
-        size: -1
-        device: sda
-      - id: sda2_root
-        type: format
-        fstype: zfsroot
-        volume: sda2
-        label: "cloudimg-rootfs"
-      - id: sda2_mount
-        type: mount
-        path: /
-        device: sda2_root
+  # storage:
+  #   version: 1
+  #   layout:
+  #     name: zfs
+  #   config:
+  #     - id: sda
+  #       ptable: msdos
+  #       wipe: superblock-recursive
+  #       preserve: false
+  #       name: ""
+  #       type: disk
+  #       match:
+  #         size: largest
+  #       grub_device: true
+  #     - id: sda1
+  #       type: partition
+  #       number: 1
+  #       size: 3GB
+  #       device: sda
+  #       flag: boot
+  #     - id: sda2
+  #       type: partition
+  #       number: 2
+  #       size: -1
+  #       device: sda
+  #     - id: sda2_root
+  #       type: format
+  #       fstype: zfsroot
+  #       volume: sda2
+  #       label: "cloudimg-rootfs"
+  #     - id: sda2_mount
+  #       type: mount
+  #       path: /
+  #       device: sda2_root
   ssh:
     # https://canonical-subiquity.readthedocs-hosted.com/en/latest/reference/autoinstall-reference.html#install-server
     install-server: yes
