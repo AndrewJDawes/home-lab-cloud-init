@@ -78,6 +78,7 @@ autoinstall:
         groups: adm, cdrom, dip, lxd, plugdev, sudo
         homedir: /home/ansible
         shell: /bin/bash
+    # https://cloudinit.readthedocs.io/en/latest/reference/examples.html#run-commands-on-very-early-at-every-boot
     bootcmd:
       # Enable SSH as a service
       - systemctl enable ssh
