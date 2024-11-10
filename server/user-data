@@ -78,3 +78,6 @@ autoinstall:
         groups: adm, cdrom, dip, lxd, plugdev, sudo
         homedir: /home/ansible
         shell: /bin/bash
+    bootcmd:
+      # Enable SSH as a service
+      - systemctl enable ssh
